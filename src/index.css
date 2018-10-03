@@ -1,0 +1,85 @@
+body {
+  height: 100%;
+  width: 100%;
+  background: #642B73;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  position: relative;
+}
+
+
+
+h3, h4, h1, p {
+  font-family: 'Roboto', sans-serif;
+}
+
+#login-options {
+  text-align: center;
+  position: fixed;
+  width: 40%;
+  height: 40%;
+  border-radius: 1%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgba(242, 242, 242,0.5);
+  color: rgba(0,0,0,0.5)
+
+}
+
+
+#flex-container {
+  width: 100%;
+  height: 100%;
+}
+
+#like {
+    background-color: rgb(139, 245, 164);
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 50%;
+
+}
+
+#dislike {
+  background-color: rgb(178,34,34);
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 2px;
+  border-radius: 50%;
+
+}
+
+#card {
+  width: 30%;
+  height: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid grey;
+  text-align: center;
+  padding: 15px;
+  margin: auto;
+  border-radius: 1%;
+}
+
+#card img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 5%;
+
+}
+
+#bio {
+  display: none;
+
+}
