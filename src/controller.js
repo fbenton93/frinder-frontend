@@ -10,6 +10,9 @@ class Controller {
             <p>You've run out of potential matches</p>
           </div>
           <div id="matches">
+            <ul>
+              ${Controller.renderMatchList(currentUser)}
+            </ul>
           </div>
         </div>
         `
@@ -22,7 +25,7 @@ class Controller {
             <h3>${userObj.name}</h3>
             <img src="${userObj.img_url}">
             <br>
-            <h4><i class="fas fa-plus"></i> Bio</h4>
+            <h4 id="bio-head"><i class="fas fa-plus"></i> Bio</h4>
             <div id="bio">${userObj.bio}</div>
             <button data-id="${userObj.id}" id="like"><i data-id="${userObj.id}" class="far fa-heart"></i></button>
             <button data-id="${userObj.id}" id="dislike"><i data-id="${userObj.id}" class="far fa-times-circle"></i></i></button>
@@ -72,9 +75,10 @@ class Controller {
   static renderMatchList(currentUser) {
     let listHTML = `<li>You have no matches</li>`
 
-    if (currentUser.matches.length > 0){
-      listHTML = currentUser.matches.map((match) => {
-        return `<li>test</li>`
+    if (currentUser.matches().length > 0) {
+      listHTML = currentUser.matches().map((match) => {
+        const boo = User.findById(match.liker_id)
+        return `<li data-matchId="${boo.id}"><img width="20px" height="20px" src=${boo.img_url}>${boo.name}</li>`
       }).join('')
     }
     return listHTML

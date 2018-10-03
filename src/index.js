@@ -43,9 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
   document.body.addEventListener("click", (event) => {
     let likeCheck;
     let buttonCheck = false
+    let matchCheck = false
     if (event.target.id == "like" || event.target.className == "far fa-heart") {
       buttonCheck = true
       likeCheck = true
+      if (currentUser.isMatch(event.target.dataset.id)) {
+        matchCheck = true
+      }
     } else if (event.target.id == "dislike" || event.target.className == "far fa-times-circle") {
       buttonCheck = true
       likeCheck = false
@@ -57,8 +61,26 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(relData => {
         currentUser.liker_relationships.push(relData)
         let randomUser = currentUser.randomUser()
-        Controller.renderMatchPage(randomUser)
+        Controller.renderMatchPage(currentUser, randomUser)
       })
+    }
+
+    if (matchCheck) {
+      Adapter.postChat({chat: {first_id: currentUser.id, second_id: event.target.dataset.id}})
+      .then(chatData => {
+        console.log(chatData);
+      })
+    }
+
+    // Bio listener
+    if (event.target.id == "bio-head" || event.target.className == "fas fa-plus") {
+      event.target.nextElementSibling.style.display = "block"
+    }
+
+    // Match list listener
+    if (event.target.dataset.matchid) {
+      // Open up a chat window for this match
+      currentUser.openChat()
     }
   })
 
@@ -69,15 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
     for(const i of data) {
       new User(i)
     }
-
-
-
-
-
-
   })
 
-
+  setInterval(Adapter.fetchChats, 5000)
 
 
 

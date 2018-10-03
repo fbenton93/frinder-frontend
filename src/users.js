@@ -15,7 +15,7 @@ const User = (() => {
     }
 
     static findById(id) {
-
+      return users.find(user => user.id == id)
     }
 
     static all() {
@@ -49,7 +49,22 @@ const User = (() => {
     }
 
     matches() {
-      return this.
+      let likee_ids = this.liker_relationships.map(function (rel){
+        return rel.likee_id
+      })
+      return this.likee_relationships.filter(function (rel){
+        return likee_ids.includes(rel.liker_id)
+      })
+    }
+
+    isMatch(id) {
+      return this.likee_relationships.find(function (rel) {
+        return rel.liker_id == id
+      })
+    }
+
+    openChat() {
+
     }
   }
 })()
